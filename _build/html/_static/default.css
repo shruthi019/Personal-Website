@@ -1,0 +1,15 @@
+html {
+    /* CSS hack for macOS's scrollbar (see #1125) */
+    background-color: #11303d;
+}
+
+div.body {
+    min-width: 450px;
+    max-width: 1100px;
+}
+
+div.sphinxsidebar {
+    position: sticky;
+    top: 0;
+}
+

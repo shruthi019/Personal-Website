@@ -1,0 +1,16 @@
+mymodule
+========
+
+.. toctree::
+   :maxdepth: 4
+
+   mymodule
+
+==> mymodule.rst <==
+mymodule module
+===============
+
+.. automodule:: mymodule
+   :members:
+   :undoc-members:
+   :show-inheritance:

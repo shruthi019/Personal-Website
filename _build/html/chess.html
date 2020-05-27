@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chess &#8212; Shruthi Rao</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Projects" href="projects.html" />
+    <link rel="prev" title="My Resume" href="resume.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul></pre>
+<ul>
+    <li><a href="index.html">Home</a> |</li>
+    <li><a href="resume.html">Resume</a> |</li>
+    <li><a href="projects.html">Projects</a></li>
+    <li>
+          <li class="nav-item nav-item-1"><a href="resume.html" accesskey="U">My Resume</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="chess">
+<span id="index-0"></span><h1>Chess<a class="headerlink" href="#chess" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-left" id="id1">
+<a class="reference internal image-reference" href="_images/chess_start.png"><img alt="_images/chess_start.png" src="_images/chess_start.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-text"><strong>Initial layout of the chessboard</strong></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-right" id="id2" style="width: 300px">
+<img alt="_images/chess_final.png" src="_images/chess_final.png" />
+<p class="caption"><span class="caption-text"><strong>Final layout of the chessboard</strong></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p><strong>(Tal Memorial 2010; Round-4; Mamedyarov, Shakhriyar vs Aronian, Levon)</strong></p>
+<div class="section" id="aim">
+<h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
+<p>The aim of this project is to parse a PGN file and subsequently represent the final position of the chessboard at the end of the game.</p>
+</div>
+<div class="section" id="prerequisite">
+<h2>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this headline">¶</a></h2>
+<p>You need to know the rules of chess - how each piece makes a move, and which moves are valid.</p>
+<p>You can go through the section on
+<a class="reference external" href="/Users/shruthirao/Sphinx/_build/html/pgn_notation.html">PGN Notation</a> to know more about the notation.</p>
+</div>
+<div class="section" id="what-is-represented">
+<h2>What is Represented?<a class="headerlink" href="#what-is-represented" title="Permalink to this headline">¶</a></h2>
+<p>The chessboard is represented using two dictionaries - ‘board_view’ and ‘piece_view’. ‘board_view’ maps all the squares in the chessboard to the pieces present on them. If a square is not occupied, it is mapped to a single space. ‘piece_view’ maps all the pieces to the squares that are occupied by them.</p>
+<p>White is represented by uppercase, and black is represented by lowercase. For example, Ka3 represents the white king moving to a3 and ka3 would mean the black king moving to a3.</p>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>pgnparser.py</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>This parses the PGN file, and extracts all moves made in the game.</p></li>
+<li><p>It discards the seven tag roster and removes the move numbers.</p></li>
+<li><p>The comments and annotations are also removed.</p></li>
+<li><p>All moves made by pawns are pre-processed to start with ‘P’ if the move was made by a white pawn and ‘p’ if made by a black pawn.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>main.py</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>This provides the main structure to play out moves on the chessboard.</p></li>
+<li><p>The chessboard is represented using two dictionaries - board_view and piece_view</p></li>
+<li><p>board_view represents the squares of the chessboard and has the piece present on the particular square as the value. If the square is empty, it is represented by a space ” “.</p></li>
+<li><p>piece_view represents all the squares that a particular piece is present at.</p></li>
+<li><p>There are different functions to make a pawn move and make a piece move.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>checkmove.py</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>This checks if a particular move is valid for a piece.</p></li>
+<li><p>It helps to check which square a piece moved from to get to its next position.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>pawn.py</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>All the various cases that may arise in a pawn move have been accounted for: capture, en passant, pawn promotion or a regular move.</p></li>
+<li><p>board_view and piece_view are updated accordingly as per the move.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>piece.py</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>board_view and piece_view are updated according to the move made.</p></li>
+<li><p>It is checked whether the move is valid (checkmove.py) first.</p></li>
+<li><p>Castling has been taken care of by updating board_view and piece_view for both the king and the rook according to the notation: o-o, o-o-o, O-O or O-O-O.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="chessboard-representation">
+<h2>Chessboard Representation<a class="headerlink" href="#chessboard-representation" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/chess_output.png"><img alt="_images/chess_output.png" src="_images/chess_output.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-text"><strong>Layout of chessboard at the end of the game in terms of board view and piece view</strong></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Chess</a><ul>
+<li><a class="reference internal" href="#aim">Aim</a></li>
+<li><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
+<li><a class="reference internal" href="#what-is-represented">What is Represented?</a></li>
+<li><a class="reference internal" href="#structure">Structure</a></li>
+<li><a class="reference internal" href="#chessboard-representation">Chessboard Representation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="resume.html"
+                        title="previous chapter">My Resume</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="projects.html"
+                        title="next chapter">Projects</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/chess.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Shruthi Rao.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.3.
+    </div>
+  </body>
+</html>
