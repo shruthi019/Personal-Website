@@ -1,0 +1,100 @@
+.. index:: Chess
+
+Chess
+=====
+
+.. figure:: /imgs/chess_start.png
+   :width: 300
+   :align: left   
+
+   **Initial layout of the chessboard**
+
+.. figure:: /imgs/chess_final.png
+   :figwidth: 300
+   :align: right
+
+   **Final layout of the chessboard**
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+**(Tal Memorial 2010; Round-4; Mamedyarov, Shakhriyar vs Aronian, Levon)**
+
+Aim
+---
+The aim of this project is to parse a PGN file and subsequently represent the final position of the chessboard at the end of the game.
+
+Prerequisite
+------------
+You need to know the rules of chess - how each piece makes a move, and which moves are valid. 
+
+You can go through the section on 
+`PGN Notation </Users/shruthirao/Sphinx/_build/html/pgn_notation.html>`_ to know more about the notation.
+
+What is Represented?
+--------------------
+The chessboard is represented using two dictionaries - 'board_view' and 'piece_view'. 'board_view' maps all the squares in the chessboard to the pieces present on them. If a square is not occupied, it is mapped to a single space. 'piece_view' maps all the pieces to the squares that are occupied by them. 
+
+White is represented by uppercase, and black is represented by lowercase. For example, Ka3 represents the white king moving to a3 and ka3 would mean the black king moving to a3.
+
+Structure
+---------
+1. pgnparser.py 
+
+  * This parses the PGN file, and extracts all moves made in the game.
+  * It discards the seven tag roster and removes the move numbers. 
+  * The comments and annotations are also removed.
+  * All moves made by pawns are pre-processed to start with 'P' if the move was made by a white pawn and 'p' if made by a black pawn.
+
+2. main.py
+
+  * This provides the main structure to play out moves on the chessboard. 
+  * The chessboard is represented using two dictionaries - board_view and piece_view
+  * board_view represents the squares of the chessboard and has the piece present on the particular square as the value. If the square is empty, it is represented by a space " ".
+  * piece_view represents all the squares that a particular piece is present at.
+  * There are different functions to make a pawn move and make a piece move.
+
+3. checkmove.py
+
+  * This checks if a particular move is valid for a piece.
+  * It helps to check which square a piece moved from to get to its next position.
+
+4. pawn.py
+
+  * All the various cases that may arise in a pawn move have been accounted for: capture, en passant, pawn promotion or a regular move.
+  * board_view and piece_view are updated accordingly as per the move.
+
+5. piece.py
+
+  * board_view and piece_view are updated according to the move made.
+  * It is checked whether the move is valid (checkmove.py) first.
+  * Castling has been taken care of by updating board_view and piece_view for both the king and the rook according to the notation: o-o, o-o-o, O-O or O-O-O.
+
+Chessboard Representation
+-------------------------
+
+.. figure:: /imgs/chess_output.png
+   :width: 700
+   :align: center
+
+   **Layout of chessboard at the end of the game in terms of board view and piece view**
